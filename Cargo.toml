@@ -1,0 +1,6 @@
+[package]
+name = "rusdooku"
+version = "0.1.0"
+authors = ["Cristi Arghiroiu <cristi.arghiroiu@gmail.com>"]
+
+[dependencies]
