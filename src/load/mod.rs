@@ -11,7 +11,7 @@ use std::path::Path;
 pub trait LoadBoard {
   fn new( file_name: String ) -> Self;
 
-  fn load( &self ) -> IOResult<Board>; // Result<Box<Board>,>;
+  fn load( &self ) -> IOResult<Board>;
 }
 
 pub struct LoadBoardOneLinerSimpleFormat {

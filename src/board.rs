@@ -53,9 +53,9 @@ impl Board {
     Board { value_array: [ Cell::empty() ; BOARD_VEC_SIZE ] }
   }
 
-  //pub fn cell_at(&self, lin: usize, col: usize) -> &Cell {
-  //  &self.value_array[ ( lin * BOARD_SIZE ) + col ]
-  //}
+  pub fn cell_at(&self, lin: usize, col: usize) -> &Cell {
+    &self.value_array[ ( lin * BOARD_SIZE ) + col ]
+  }
 }
 
 
