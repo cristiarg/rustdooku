@@ -1,25 +1,25 @@
 use super::board::{ Board , BOARD_SIZE };
-//use std::io::Result as IOResult;
 
 pub trait DisplayBoard {
-  //fn new() -> Self;
-
-  fn  display( &self , board: & Board ) -> ();
+  fn  display( &self /*, board: & Board*/ ) -> ();
 }
 
-pub struct DisplayBoardToConsoleSimpleStyle {
+pub struct DisplayBoardToConsoleSimpleStyle<'a> {
+  pub board: &'a Board,
 }
 
-impl DisplayBoard for DisplayBoardToConsoleSimpleStyle {
-  //fn new() -> Self {
-  //  DisplayBoardToConsoleSimpleStyle {}
-  //}
+impl<'b> DisplayBoardToConsoleSimpleStyle<'b> {
+  pub fn new( brd: &'b Board ) -> Self {
+    DisplayBoardToConsoleSimpleStyle { board: &brd }
+  }
+}
 
-  fn display( &self , board: & Board ) -> () {
+impl<'a> DisplayBoard for DisplayBoardToConsoleSimpleStyle<'a> {
+  fn display( &self /*, board: &Board*/ ) -> () {
     let zero: u8 = '0'.to_digit(10).unwrap() as u8;
     for lin in 0..BOARD_SIZE as usize {
       for col in 0..BOARD_SIZE as usize {
-        let cel = board.cell_at( lin , col );
+        let cel = self.board.cell_at( lin , col );
         print!( " {}",
           match cel.value {
             Some(v) => {

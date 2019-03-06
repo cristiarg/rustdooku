@@ -57,12 +57,16 @@ impl LoadBoard for LoadBoardOneLinerSimpleFormat {
     LoadBoardOneLinerSimpleFormat { file_name: file_name }
   }
 
+  //#[allow(unused_assignments)]
   fn load(&self) -> IOResult<Board> {
     let file_path = Path::new( &self.file_name );
     let file = File::open( &file_path )?;
     let buf_read = BufReader::new( &file );
 
-    for (_i, line) in buf_read.lines().into_iter().enumerate() {
+    let mut line_count = 0;
+    //for (i, line) in buf_read.lines().into_iter().enumerate() {
+    for line in buf_read.lines().into_iter() {
+      line_count += 1;
       let line_str: &String = &line?;
       let new_board = load_one_board( line_str );
       match new_board {
@@ -73,6 +77,10 @@ impl LoadBoard for LoadBoardOneLinerSimpleFormat {
           return Err( IOError::new( IOErrorKind::Other , e ) );
         }
       }
+    }
+
+    if line_count == 0 {
+      return Err( IOError::new( IOErrorKind::Other , "no board description found" ) )
     }
 
     Err( IOError::new( IOErrorKind::Other , "unspecified error" ) )

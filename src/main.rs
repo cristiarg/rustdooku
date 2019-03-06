@@ -18,15 +18,15 @@ use display::DisplayBoardToConsoleSimpleStyle;
 fn main() {
   let full_file_name = String::from( "/home/crs/proj/rustdooku/res/0.txt" );
   println!("full file name: {:?}", &full_file_name);
-  let board_loader: LoadBoardOneLinerSimpleFormat = LoadBoard::new( full_file_name.clone() );
+  let board_loader: LoadBoardOneLinerSimpleFormat = LoadBoa rd::new( full_file_name.clone() );
   let loader_result = board_loader.load();
   match &loader_result {
     Ok( b ) => {
       println!("board loaded correctly");
-      let board_displayer = DisplayBoardToConsoleSimpleStyle {};
-      let rf = &board_displayer;
+      let str = DisplayBoardToConsoleSimpleStyle::new(&b );
+      let trt: &DisplayBoard = &str;
       //let board_displayer: DisplayBoardToConsoleSimpleStyle = DisplayBoard::new(&b);
-      rf.display(&b);
+      trt.display(/*&b*/);
     }
     Err( e ) => {
       println!("board failed to load correctly: {}" , e );
