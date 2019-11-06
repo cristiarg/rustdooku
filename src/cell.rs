@@ -1,5 +1,12 @@
 use std::fmt;
-//use std::marker
+
+#[allow(dead_code)]
+#[derive(Clone, Copy, PartialEq)]
+pub struct Position {
+  pub lin: usize,
+  pub col: usize,
+}
+
 
 #[derive(Clone, Copy)]
 pub struct Cell {
@@ -41,7 +48,7 @@ impl Cell {
 }
 
 #[test]
-fn test_cell() {
+fn test_cell_01() {
   let mut cell_none = Cell::empty();
   assert!( !cell_none.has_value() );
 

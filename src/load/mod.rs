@@ -63,10 +63,10 @@ impl LoadBoard for LoadBoardOneLinerSimpleFormat {
     let file = File::open( &file_path )?;
     let buf_read = BufReader::new( &file );
 
-    let mut line_count = 0;
+    let mut _line_count = 0;
     //for (i, line) in buf_read.lines().into_iter().enumerate() {
     for line in buf_read.lines().into_iter() {
-      line_count += 1;
+      _line_count += 1;
       let line_str: &String = &line?;
       let new_board = load_one_board( line_str );
       match new_board {
@@ -79,7 +79,7 @@ impl LoadBoard for LoadBoardOneLinerSimpleFormat {
       }
     }
 
-    if line_count == 0 {
+    if _line_count == 0 {
       return Err( IOError::new( IOErrorKind::Other , "no board description found" ) )
     }
 
